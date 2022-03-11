@@ -106,6 +106,8 @@ IDB_LOADING             BITMAP                  "..\\res\\loading.bmp"
 
 IDB_SUN                 BITMAP                  "..\\res\\bitmap3.bmp"
 
+IDB_FIRE2               BITMAP                  "C:\\Users\\User\\Downloads\\Cora_OOPL\\windowTutorial\\game4.10\\RES\\FIRE.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -120,7 +122,7 @@ IDC_GAMECURSOR          CURSOR                  "..\\res\\gamecurs.cur"
 // PNG
 //
 
-IDB_Cat                 PNG                     "C:\\Users\\User\\Downloads\\老婆的\\windowTutorial\\game4.10\\RES\\CAT.png"
+IDB_FIRE                PNG                     "C:\\Users\\User\\Downloads\\Cora_OOPL\\windowTutorial\\game4.10\\RES\\FIRE.png"
 
 #endif    // 中文 (繁體，台灣) resources
 /////////////////////////////////////////////////////////////////////////////

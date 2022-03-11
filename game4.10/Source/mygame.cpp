@@ -279,6 +279,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 		picX = picY = 0; //reset location
 	}
 		practice.SetTopLeft(picX, picY);
+		c_practice.OnMove();
 
 }
 
@@ -318,6 +319,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	//
 
 	practice.LoadBitmap(IDB_SUN,RGB(255,255,255));  // 白色變透明
+	c_practice.LoadBitmap();
 }
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -402,5 +404,34 @@ void CGameStateRun::OnShow()
 	corner.SetTopLeft(SIZE_X-corner.Width(), SIZE_Y-corner.Height());
 	corner.ShowBitmap();
 	practice.ShowBitmap();
+	c_practice.OnShow();
 }
+
+// CPractice class
+CPractice::CPractice()
+{
+	x = y = 0;
 }
+void CPractice::OnMove() {
+	if (y <= SIZE_Y) {
+		x += 3;
+		y += 3;
+	}
+	else {
+		x = y = 0;
+	}
+}
+
+void CPractice::LoadBitmap() {
+	pic.LoadBitmap(IDB_FIRE2, RGB(0,0,0));
+
+}
+
+void CPractice::OnShow() {
+	pic.SetTopLeft(x, y);
+	pic.ShowBitmap();
+	
+}
+
+}
+

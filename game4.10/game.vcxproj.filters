@@ -155,9 +155,6 @@
     <ClInclude Include="Source\StdAfx.h">
       <Filter>MFC</Filter>
     </ClInclude>
-    <ClInclude Include="Source\mygame.h">
-      <Filter>MyGame</Filter>
-    </ClInclude>
     <ClInclude Include="Source\CEraser.h">
       <Filter>MyGame</Filter>
     </ClInclude>
@@ -166,6 +163,9 @@
     </ClInclude>
     <ClInclude Include="Source\CBouncingBall.h">
       <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\mygame.h">
+      <Filter>Resource Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -180,11 +180,17 @@
     <Image Include="res\bmp00001.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="RES\CAT.png" />
     <Image Include="res\bitmap4.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Bitmaps\abyssinian-card-small.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\CAT.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\FIRE.png" />
+    <Image Include="RES\FIRE.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
