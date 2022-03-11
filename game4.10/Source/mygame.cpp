@@ -191,6 +191,7 @@ CGameStateRun::CGameStateRun(CGame *g)
 : CGameState(g), NUMBALLS(28)
 {
 	ball = new CBall [NUMBALLS];
+	picX = picY = 0;   //declare
 }
 
 CGameStateRun::~CGameStateRun()
@@ -268,7 +269,16 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	// 移動彈跳的球
 	//
 	bball.OnMove();
-	practice.SetTopLeft(10, 10);
+
+	//practice.SetTopLeft(10, 10);
+	if (picX <= SIZE_Y) {
+		picX += 5;		//when inside the bottom line
+		picY += 5;
+	}
+	else {
+		picX = picY = 0; //reset location
+	}
+		practice.SetTopLeft(picX, picY);
 
 }
 
@@ -307,7 +317,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	// 此OnInit動作會接到CGameStaterOver::OnInit()，所以進度還沒到100%
 	//
 
-	practice.LoadBitmap(IDB_SUN,RGB(255,255,255));
+	practice.LoadBitmap(IDB_SUN,RGB(255,255,255));  // 白色變透明
 }
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
