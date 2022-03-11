@@ -37,7 +37,6 @@
 #define IDB_LOADING                     156
 #define IDB_SUN                         158
 #define IDB_Cat                         160
-#define IDB_BITMAP3                     162
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772

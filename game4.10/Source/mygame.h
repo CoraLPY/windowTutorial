@@ -81,10 +81,7 @@ namespace game_framework {
 		CGameStateRun(CGame *g);
 		~CGameStateRun();
 		void OnBeginState();							// 設定每次重玩所需的變數
-		void OnInit() {
-
-		
-		}  								// 遊戲的初值及圖形設定
+		void OnInit();							// 遊戲的初值及圖形設定
 		void OnKeyDown(UINT, UINT, UINT);
 		void OnKeyUp(UINT, UINT, UINT);
 		void OnLButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
