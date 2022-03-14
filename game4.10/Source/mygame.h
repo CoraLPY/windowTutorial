@@ -88,6 +88,20 @@ namespace game_framework {
 		int x, y;
 	};
 
+	//create map 
+	class CGameMap {
+	public:
+		CGameMap();
+		void LoadBitmap(); // load map
+		void OnShow();
+	protected:
+		CMovingBitmap blue, green; //create blue map and green map
+		int map[4][5];
+		const int X, Y;	//left-top location
+		const int MW, MH;	//const width and height of each little map
+
+	};
+
 
 	class CGameStateRun : public CGameState {
 	public:
@@ -116,7 +130,9 @@ namespace game_framework {
 		CBouncingBall   bball;		// ¤ÏÂÐ¼u¸õªº²y
 		CMovingBitmap practice;		// sun
 		int			picX, picY;		//sun's location
-		CPractice	c_practice;
+		CPractice	c_practice;		//inserted bitmap
+		CGameMap	gamemap;		//map
+
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

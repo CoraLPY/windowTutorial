@@ -319,7 +319,8 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	//
 
 	practice.LoadBitmap(IDB_SUN,RGB(255,255,255));  // 白色變透明
-	c_practice.LoadBitmap();
+	c_practice.LoadBitmap();  //T4
+	gamemap.LoadBitmap(); //T5
 }
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -403,11 +404,12 @@ void CGameStateRun::OnShow()
 	corner.ShowBitmap();
 	corner.SetTopLeft(SIZE_X-corner.Width(), SIZE_Y-corner.Height());
 	corner.ShowBitmap();
+	gamemap.OnShow();	//show map
 	practice.ShowBitmap();
 	c_practice.OnShow();
 }
 
-// CPractice class
+// CPractice class - T4
 CPractice::CPractice()
 {
 	x = y = 0;
@@ -429,9 +431,45 @@ void CPractice::LoadBitmap() {
 
 void CPractice::OnShow() {
 	pic.SetTopLeft(x, y);
-	pic.ShowBitmap();
-	
+	pic.ShowBitmap();	
 }
+
+// create map -T5
+CGameMap::CGameMap():X(20), Y(40), MW(120), MH(100){
+	int map_init[4][5] = { {0,0,1,0,0}, {0,1,2,1,0}, {1,2,1,2,1}, {2,1,2,1,2} }; //defalt map matrix
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 5; j++) {
+			map[i][j] = map_init[i][j];	
+		}
+	}
+}
+
+void CGameMap::LoadBitmap() {
+	blue.LoadBitmap(IDB_BLUE);
+	green.LoadBitmap(IDB_GREEN);
+}
+void CGameMap::OnShow() {
+	for (int i = 0; i < 5; i++) {		//left side - show 5 bitmap 
+		for (int j = 0; j < 4; j++) {	//bottom side - show 4 bitmap 
+			switch (map[j][i]) {
+			case 0:
+				break;
+			case 1:
+				blue.SetTopLeft(X+(MW*i), Y + (MH*j));	//set location
+				blue.ShowBitmap();							
+				break;
+			case 2:
+				green.SetTopLeft(X + (MW*i), Y + (MH*j));	//set location
+				green.ShowBitmap();
+				break;
+			default:
+				ASSERT(0);		//should not show thr value except 0,1,2
+
+			}
+		}
+	}
+}
+
 
 }
 
