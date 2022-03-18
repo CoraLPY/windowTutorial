@@ -280,6 +280,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	}
 		practice.SetTopLeft(picX, picY);
 		c_practice.OnMove();
+		gamemap.OnMove();	//when something need to move inside the class , must add OnMove() in CGameStateRun
 
 }
 
@@ -337,6 +338,8 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		eraser.SetMovingUp(true);
 	if (nChar == KEY_DOWN)
 		eraser.SetMovingDown(true);
+
+	gamemap.OnKeyDown(nChar); //when something need to enter keyboard button inside the class , must add OnKeyDown() in CGameStateRun
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -442,6 +445,8 @@ CGameMap::CGameMap():X(20), Y(40), MW(120), MH(100){
 			map[i][j] = map_init[i][j];	
 		}
 	}
+	random_num = 0; //initial the random number for the number of the ball
+	bballs = NULL; //inirial ball be NULL to do the delete action to avoid momery leaks
 }
 
 void CGameMap::LoadBitmap() {
@@ -468,7 +473,76 @@ void CGameMap::OnShow() {
 			}
 		}
 	}
+	//show the ball inside the game map -T6
+	for (int i = 0; i < random_num; i++) {
+		bballs[i].OnShow();
+	}
+
 }
+
+//toturial 6
+void CGameMap::OnKeyDown(UINT nChar) {
+	const int KEY_SPACE = 0x20;
+	if (nChar = KEY_SPACE) {
+		RandomBouncingBall(); //when enter the space, shot the ball randomly
+	}
+}
+void CGameMap::OnMove() {
+	for (int i = 0; i < random_num; i++) {
+		bballs[i].OnMove();
+	}
+}
+
+CGameMap::~CGameMap() {
+	delete[] bballs;
+
+}
+
+void CBouncingBall::SetXY(int x, int y) {
+	this->x = x;
+	this->y = y;
+}
+void CBouncingBall::SetFloor(int floor) {
+	this->floor = floor;
+}
+
+void CBouncingBall::SetVeLocity(int velocity) {
+	this->velocity = velocity;
+	this->initial_velocity = velocity;
+}
+
+void CGameMap::InitializeBouncingBall(int ini_index, int row, int col) {
+	const int VELOCITY = 10;	//defalut raise rate
+	const int BALL_PIC_HEIGHT = 15;	//ball height
+	int floor = Y + (row + 1)*MH - BALL_PIC_HEIGHT;	//set ball's 落地點為MAP的下方
+
+	bballs[ini_index].LoadBitmap();
+	bballs[ini_index].SetFloor(floor);	
+	bballs[ini_index].SetVeLocity(VELOCITY+col);	//set raise rate,right= more raising
+	bballs[ini_index].SetXY(X+col*MW+MW/2,floor);	// set ball's defult location, X location = a helf of map 
+}
+void CGameMap::RandomBouncingBall() {
+	const int MAX_RAND_NUM = 10;	//maxium random nmber
+	random_num = (rand() % MAX_RAND_NUM) + 1;   //random 1~max
+
+	delete[] bballs; //delete the last setting (can not delete before new)
+	bballs = new CBouncingBall[random_num];   //set ball array
+	int ini_index = 0;
+
+	for (int row = 0; row < 4; row++) {
+		for (int col = 0; col < 5; col++) {
+			if (map[row][col] != 0 && ini_index < random_num) {
+				InitializeBouncingBall(ini_index, row, col);	//initial ball inside the array of the game map
+				ini_index++;
+			}
+		}
+
+	}
+
+
+
+}
+
 
 
 }

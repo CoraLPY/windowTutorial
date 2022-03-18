@@ -88,17 +88,44 @@ namespace game_framework {
 		int x, y;
 	};
 
-	//create map 
+	
+	/*class CBouncingBall {
+	public:
+		CBouncingBall();
+		void LoadBitmap(); // load ball
+		void OnShow();		//show ball
+		void OnMove();	//move ball
+		
+	private:
+		int x, y;	//ball location
+		int floor;	//¦aªOY location
+		bool rising;	//rise or not
+		int initial_velocity;//defalt rate
+		int velocity; // current rate
+		CAnimation animation;	// use moive instead of  pactice 
+
+
+
+	};*/
+	//create map - T5,6
 	class CGameMap {
 	public:
 		CGameMap();
 		void LoadBitmap(); // load map
-		void OnShow();
+		void OnShow();		//show map
+		void OnMove();	//play the ball action
+		void OnKeyDown(UINT);	//the reaction when key down the blank 
+		void RandomBouncingBall();	//random number of ball add to map
+		void InitializeBouncingBall(int, int, int); //inital the ball
+		~CGameMap();	//destructor
 	protected:
 		CMovingBitmap blue, green; //create blue map and green map
 		int map[4][5];
-		const int X, Y;	//left-top location
+		const int X, Y;	//left-top location on big map
 		const int MW, MH;	//const width and height of each little map
+		CBouncingBall* bballs;		//cbouncingball«ü¼Ð
+		int random_num;		
+
 
 	};
 

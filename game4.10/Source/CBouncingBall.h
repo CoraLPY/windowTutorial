@@ -3,7 +3,7 @@ namespace game_framework {
 	// 這個class提供會一直彈跳的球
 	// 看懂就可以改寫成自己的程式了
 	/////////////////////////////////////////////////////////////////////////////
-
+	//create ball - T6
 	class CBouncingBall
 	{
 	public:
@@ -11,6 +11,10 @@ namespace game_framework {
 		void LoadBitmap();		// 載入圖形
 		void OnMove();			// 移動
 		void OnShow();			// 將圖形貼到畫面
+		void SetFloor(int);			//set 彈回的水平面
+		void SetXY(int, int);	//set defalt rise location
+		void SetVeLocity(int);	//set defalt rise rate
+
 	private:
 		int x, y;				// 圖形座標
 		int floor;				// 地板的Y座標
